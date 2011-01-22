@@ -14,9 +14,10 @@ use Irssi qw(
     signal_add_last
     );
 
-my $feedfile = "/home/nosmo/www/links.rss";
 
+# Change these as you see fit
 my $user = "nosmo";
+my $feedfile = "/home/$user/www/links.rss";
 my $site = "http://www.netsoc.tcd.ie/~nosmo/";
 my $feeddescription = "Could this be used for something useful in the future?";
 
@@ -29,6 +30,7 @@ $VERSION = '1.01';
     license     => 'Public Domain',
     );
 
+# TODO
 settings_add_int('linkdump','do_pms',0);
 #settings_add_int('linkdump','do_restricted',0);
 settings_add_int('linkdump','do_channels',1);
