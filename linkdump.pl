@@ -58,7 +58,6 @@ sub sig_public {
             $rss->channel(
                 title => "IRC RSS link dump for " . $user,
                 link  => $site,
-                # This potentially introduces XSS or something similar.
                 description => $feeddescription,
                 );
             $rss->save($feedfile);
