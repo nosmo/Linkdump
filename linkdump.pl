@@ -14,6 +14,8 @@ use Irssi qw(
     signal_add_last
     );
 
+# List of channels to NOT log.
+my @nologchannels = ("#testlolol");
 
 # Change these as you see fit
 my $user = "nosmo";
@@ -30,15 +32,17 @@ $VERSION = '1.01';
     license     => 'Public Domain',
     );
 
-# TODO
 settings_add_int('linkdump','do_pms',0);
-#settings_add_int('linkdump','do_restricted',0);
 settings_add_int('linkdump','do_channels',1);
 
 print "THIS PROGRAM DUMPS LINKS INTO A GIVEN FILE - THIS FILE WILL BE VIEWABLE BY ANYONE UNLESS YOU SET UP SOME SAFEGUARDS";
 
 sub sig_public {
     my ($server, $msg, $nick, $address, $channel) = @_;
+
+    if ($channel ~~ @nologchannels) {
+        return;
+    }
 
     if (($msg =~ /https?:\/\/\S* /) || ($msg =~ /https?:\/\/\S*$/)) {
         my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
